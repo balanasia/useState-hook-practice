@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 //Show the latest time in the <h1> when the Get Time button
 //is pressed.
@@ -14,10 +14,21 @@ import React from "react";
 // setInterval(sayHi, 1000);
 
 function App() {
+  setInterval(getTime, 1000);
+
+  let now = new Date().toLocaleTimeString();
+
+  const [state, setState] = useState(now);
+
+  function getTime() {
+    let newTime = new Date().toLocaleTimeString();
+    setState(newTime);
+  }
+
   return (
     <div className="container">
-      <h1>TIME</h1>
-      <button>Get Time</button>
+      <h1>{state}</h1>
+      <button onClick={getTime}>Get Time</button>
     </div>
   );
 }
